@@ -1,0 +1,7 @@
+{
+  "name": "roblox-panel",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
