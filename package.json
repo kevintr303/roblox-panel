@@ -1,7 +1,19 @@
 {
   "name": "roblox-panel",
   "private": true,
+  "packageManager": "bun@1.2.5",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "clean": "turbo clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "turbo": "^2.4.4"
+  }
 }

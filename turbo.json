@@ -1,0 +1,31 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "globalEnv": ["NODE_ENV", "BUN_ENV"],
+  "globalPassThroughEnv": ["NODE_ENV", "BUN_ENV"],
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "dist/**", "!.next/cache/**"],
+      "env": ["NODE_ENV", "BUN_ENV"],
+      "outputLogs": "new-only"
+    },
+    "lint": {
+      "outputs": [],
+      "outputLogs": "errors-only"
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "interactive": true
+    },
+    "clean": {
+      "cache": false
+    },
+    "format": {
+      "outputs": [],
+      "outputLogs": "errors-only"
+    }
+  }
+} 
