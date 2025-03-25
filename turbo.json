@@ -13,7 +13,11 @@
     },
     "lint": {
       "outputs": [],
-      "outputLogs": "errors-only"
+      "outputLogs": "full"
+    },
+    "lint:fix": {
+      "outputs": [],
+      "outputLogs": "full"
     },
     "dev": {
       "cache": false,
