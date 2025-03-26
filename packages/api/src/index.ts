@@ -4,16 +4,16 @@ import { cors } from '@elysiajs/cors';
 import { swagger } from '@elysiajs/swagger';
 import { loadPlugins } from './utils/plugin.util';
 import { errorHandler } from './utils/validation.util';
-
-const CURRENT_API_VERSION = 1;
+import { config } from './utils/config.util';
+import { healthCheck } from './utils/health.util';
 
 const app = new Elysia({ adapter: node() }).use(cors());
 
 const swaggerConfig = {
   documentation: {
     info: {
-      title: 'Roblox Panel API',
-      version: `${CURRENT_API_VERSION}`,
+      title: config.swagger.title,
+      version: `${config.api.version}`,
     },
     tags: [] as Array<{ name: string; description: string }>,
   },
@@ -26,13 +26,15 @@ app.use(errorHandler);
 
 app.get('/api', () => {
   return {
-    message: 'Roblox Panel API',
-    version: `${CURRENT_API_VERSION}`,
+    message: config.swagger.title,
+    version: `${config.api.version}`,
   };
 });
 
-const { tags } = await loadPlugins(app, CURRENT_API_VERSION);
+app.use(healthCheck);
+
+const { tags } = await loadPlugins(app, config.api.version);
 
 swaggerConfig.documentation.tags = tags;
 
-app.listen(3000);
+app.listen(config.api.port);
